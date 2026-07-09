@@ -1,0 +1,59 @@
+{
+  "name": "flowgraf-mcp",
+  "version": "0.1.1",
+  "description": "Flowgraf MCP server — create and edit clean, editable architecture diagrams from your AI agent (Claude Code, Cursor, Windsurf). Returns an SVG plus a link to a live, editable canvas.",
+  "keywords": [
+    "mcp",
+    "model-context-protocol",
+    "flowgraf",
+    "architecture",
+    "diagram",
+    "diagrams",
+    "claude",
+    "cursor",
+    "ai",
+    "stdio"
+  ],
+  "license": "MIT",
+  "author": "Abhishek Kumar",
+  "homepage": "https://flowgraf.in",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/abhishek-genailytics/flowgraf-mcp.git"
+  },
+  "bugs": {
+    "url": "https://github.com/abhishek-genailytics/flowgraf-mcp/issues"
+  },
+  "type": "module",
+  "bin": {
+    "flowgraf-mcp": "dist/index.js"
+  },
+  "main": "dist/index.js",
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "engines": {
+    "node": ">=18"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "dev": "tsx watch src/index.ts",
+    "build": "esbuild src/index.ts --bundle --platform=node --format=esm --target=node18 --packages=external --outfile=dist/index.js --banner:js=\"#!/usr/bin/env node\"",
+    "prepublishOnly": "npm run build",
+    "test": "vitest run",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "1.26.0"
+  },
+  "devDependencies": {
+    "@types/node": "24.13.2",
+    "esbuild": "0.28.1",
+    "tsx": "4.23.0",
+    "typescript": "5.9.3",
+    "vitest": "4.1.9"
+  }
+}
