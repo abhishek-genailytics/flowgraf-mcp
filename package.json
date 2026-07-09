@@ -1,6 +1,7 @@
 {
   "name": "flowgraf-mcp",
-  "version": "0.1.1",
+  "version": "0.1.2",
+  "mcpName": "in.flowgraf/flowgraf",
   "description": "Flowgraf MCP server — create and edit clean, editable architecture diagrams from your AI agent (Claude Code, Cursor, Windsurf). Returns an SVG plus a link to a live, editable canvas.",
   "keywords": [
     "mcp",
