@@ -1,5 +1,7 @@
 # flowgraf-mcp
 
+[![flowgraf-mcp MCP server](https://glama.ai/mcp/servers/abhishek-genailytics/flowgraf-mcp/badges/score.svg)](https://glama.ai/mcp/servers/abhishek-genailytics/flowgraf-mcp)
+
 **Create and edit clean, editable architecture diagrams from your AI agent.**
 
 [Flowgraf](https://flowgraf.in) turns a description of a system into a clean,
