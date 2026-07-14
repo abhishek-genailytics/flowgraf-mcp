@@ -12,9 +12,9 @@
 # ---- build: compile the bundle ------------------------------------------------
 FROM node:22-alpine AS build
 WORKDIR /app
-# package.json always matches; package-lock.json is copied too when present.
-COPY package*.json ./
-RUN npm install --no-audit --no-fund
+# Copy the lockfile so `npm ci` gives a reproducible, locked install.
+COPY package.json package-lock.json ./
+RUN npm ci --no-audit --no-fund
 COPY tsconfig.json ./
 COPY src ./src
 RUN npm run build
@@ -25,9 +25,12 @@ RUN npm run build
 FROM node:22-alpine AS runtime
 ENV NODE_ENV=production
 WORKDIR /app
-COPY package*.json ./
-RUN npm install --omit=dev --no-audit --no-fund && npm cache clean --force
+COPY package.json package-lock.json ./
+RUN npm ci --omit=dev --no-audit --no-fund && npm cache clean --force
 COPY --from=build /app/dist ./dist
+
+# Drop root — the proxy needs no write access at runtime.
+USER node
 
 # stdout is the MCP channel; the banner and all logs go to stderr.
 ENTRYPOINT ["node", "dist/index.js"]
